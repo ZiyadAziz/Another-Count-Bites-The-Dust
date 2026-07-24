@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dlnwn52ssdac2"]
+
+[ext_resource type="Texture2D" uid="uid://bl7ght80cpits" path="res://icon.svg" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://u1ngfs3xri4i" path="res://scripts/level_manager.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cx4l8n6c7rp65" path="res://scenes/spawner.tscn" id="3_lnu2h"]
+
+[node name="Game" type="Node2D" unique_id=1294443204]
+
+[node name="LevelManager" type="Node" parent="." unique_id=1760145482]
+unique_name_in_owner = true
+script = ExtResource("1_yqjtg")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=197247888]
+position = Vector2(295, 220)
+texture = ExtResource("1_uwrxv")
+
+[node name="spawner" parent="." unique_id=1828385876 instance=ExtResource("3_lnu2h")]
