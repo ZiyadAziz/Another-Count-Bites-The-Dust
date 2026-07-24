@@ -9,15 +9,17 @@ var current_state = State.ROAM
 @onready var murder_zone: Area2D = $MurderZone
 @onready var murder_collision_shape_2d: CollisionShape2D = $MurderZone/CollisionShape2D
 @onready var murder_clock: Timer = $MurderClock
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _ready() -> void:
 	if imposter:
 		murder_collision_shape_2d.disabled = false
 		murder_clock.start()
+		sprite_2d.texture = load("res://assets/Temp_Imposta.png")
 	pass
 
 #I believe this is where the roaming function would be, need to research that more though
-#Maybe if you're the imposter, you should try to roam to other NPCs
+#Maybe if you're the imposter, you should try to roam to other NPCs/Have different roaming mechanics in general
 func _process(delta: float) -> void:
 	pass
 
