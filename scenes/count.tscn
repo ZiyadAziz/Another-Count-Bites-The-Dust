@@ -11,6 +11,7 @@ height = 16.0
 radius = 64.0
 
 [node name="Count" type="CharacterBody2D" unique_id=1484746654]
+input_pickable = true
 script = ExtResource("1_wca8b")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=210038922]
@@ -27,3 +28,6 @@ disabled = true
 
 [node name="MurderClock" type="Timer" parent="." unique_id=788351401]
 wait_time = 10.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="MurderClock" to="." method="_on_murder_clock_timeout"]
