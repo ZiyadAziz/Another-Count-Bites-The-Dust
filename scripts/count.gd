@@ -5,13 +5,8 @@ var imposter := false
 
 enum State {ROAM, DEAD} #Not sure if this is what to do for the movement stuff
 var current_state = State.ROAM
-#This litterally should be a walking around function, maybe i can complicate it more later on with stuff like a panic mechanic
-#Also the player should be able to click to kill a count; 
-#my imposter mechanics might honestly be a boolean in the count scene
-# if its true then it would enable the vision cone and other imposter features
-# currently I plan for an imposter to look exactly the same as a count
 
-
+@onready var murder_zone: Area2D = $MurderZone
 @onready var murder_collision_shape_2d: CollisionShape2D = $MurderZone/CollisionShape2D
 @onready var murder_clock: Timer = $MurderClock
 
@@ -22,6 +17,7 @@ func _ready() -> void:
 	pass
 
 #I believe this is where the roaming function would be, need to research that more though
+#Maybe if you're the imposter, you should try to roam to other NPCs
 func _process(delta: float) -> void:
 	pass
 
@@ -32,8 +28,19 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		queue_free()
 	pass # Replace with function body.
 
-#Here I would check the NPCs in the MurderZone and murder one of them, idk how though...
+#Here I would need to play the murder audio, and also the character murdered needs to play a death animation
 func _on_murder_clock_timeout() -> void:
-	if current_state != State.DEAD:
-		print("You're DEAD")
-	pass # Replace with function body.
+	var possible_victims: Array = []
+	
+	for body in murder_zone.get_overlapping_bodies():
+		if body != self and body.current_state != State.DEAD:
+			possible_victims.append(body)
+			
+	if possible_victims.is_empty():
+		print("no one to murder")
+		return
+		
+	var victim = possible_victims.pick_random()
+	victim.current_state = State.DEAD
+	victim.queue_free() #play an animation instead
+	print("Killed NPC", victim.id)
