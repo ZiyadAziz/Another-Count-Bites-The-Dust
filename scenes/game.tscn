@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dlnwn52ssdac2"]
 
 [ext_resource type="Script" uid="uid://u1ngfs3xri4i" path="res://scripts/level_manager.gd" id="1_yqjtg"]
+[ext_resource type="FontFile" uid="uid://dy0yhkipbai2q" path="res://assets/SuperiorMedium.otf" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cx4l8n6c7rp65" path="res://scenes/spawner.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://dxvmyj55fxxrb" path="res://assets/backgrown.png" id="4_lbhrr"]
 
@@ -27,6 +28,20 @@ radius = 114.00439
 [node name="LevelManager" type="Node" parent="." unique_id=1760145482]
 unique_name_in_owner = true
 script = ExtResource("1_yqjtg")
+
+[node name="CountDown" type="Label" parent="LevelManager" unique_id=2123870562]
+offset_left = 558.0
+offset_top = -12.0
+offset_right = 626.0
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("2_lbhrr")
+theme_override_font_sizes/font_size = 50
+text = "10
+"
+
+[node name="MurderCountDown" type="Timer" parent="LevelManager" unique_id=1680468245]
+wait_time = 10.0
+autostart = true
 
 [node name="spawner" parent="." unique_id=1828385876 instance=ExtResource("3_lnu2h")]
 position = Vector2(-4, 0)
