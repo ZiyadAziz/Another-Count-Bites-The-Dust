@@ -32,7 +32,8 @@ var body_default_y := 0.0
 var hat_default_y := 0.0
 var robe_default_y := 0.0
 
-#Currently Imposter is always id 1, so he should be a blonde with black crown and black robe
+@onready var death: AudioStreamPlayer = $Death
+@onready var player_kill: AudioStreamPlayer = $PlayerKill
 
 #blonde, dark brown, gray, pink
 var bodyPaths: Array[String] = ["res://assets/body_bd.png", "res://assets/body_db.png", "res://assets/body_g.png", "res://assets/body_p.png"]
@@ -70,6 +71,8 @@ func _process(delta: float) -> void:
 			collision_shape_2d.disabled = true
 			self.input_pickable = false
 			self.z_index = 0
+			death.pitch_scale = randf_range(0.95, 1.1)
+			death.play()
 			create_tween().tween_property(self, "rotation_degrees", 90.0, 0.3)
 			
 		died = true
@@ -120,10 +123,18 @@ func pick_new_target():
 	roam_target = global_position + Vector2.RIGHT.rotated(angle) * distance
 	move_direction = (roam_target - global_position).normalized()
 	
+func pick_new_target_run(runaway: int):
+	var angle = randf() * TAU
+	var distance = randf_range(runaway, 1000) 
+	
+	roam_target = global_position + Vector2.RIGHT.rotated(angle) * distance
+	move_direction = (roam_target - global_position).normalized()
+	
 #This is the killing mechanic, need to check whether or not the Count is an imposter for what it does, currently just queue_free but later it should play a sound and animation 
 # and maybe just set the NPC state to being dead
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		player_kill.play()
 		current_state = State.DEAD
 		print("Killed NPC", id)
 
@@ -144,6 +155,7 @@ func _on_murder_clock_timeout() -> void:
 		victim.current_state = State.DEAD
 		#victim.queue_free() #play an animation instead
 		print("Killed NPC", victim.id)
+		pick_new_target_run(ROAM_AREA)
 
 
 func _on_wait_timer_timeout() -> void:

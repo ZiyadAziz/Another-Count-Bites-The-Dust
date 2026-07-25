@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bhdij3qaydl8q" path="res://assets/robe_r.png" id="2_rsiuf"]
 [ext_resource type="Texture2D" uid="uid://ddli082w0p20u" path="res://assets/body_db.png" id="3_mvd56"]
 [ext_resource type="Texture2D" uid="uid://dr4tle8v3xs5f" path="res://assets/hat_g.png" id="4_dgec3"]
+[ext_resource type="AudioStream" uid="uid://bce5seawdqx4f" path="res://assets/death_sound.mp3" id="5_dgec3"]
+[ext_resource type="AudioStream" uid="uid://cle08viuolbyq" path="res://assets/player_kill.mp3" id="6_t27py"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lnu2h"]
 radius = 18.027756
@@ -46,6 +48,14 @@ wait_time = 10.0
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=2039855863]
 one_shot = true
+
+[node name="Death" type="AudioStreamPlayer" parent="." unique_id=21278260]
+stream = ExtResource("5_dgec3")
+volume_db = -21.894
+
+[node name="PlayerKill" type="AudioStreamPlayer" parent="." unique_id=771013835]
+stream = ExtResource("6_t27py")
+volume_db = -13.684
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="MurderClock" to="." method="_on_murder_clock_timeout"]
