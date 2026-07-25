@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://cqphvx0byhu71" path="res://scenes/count.tscn" id="2_ik2nu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(926, 476)
+size = Vector2(990, 512)
 
 [node name="spawner" type="Area2D" unique_id=1828385876]
 script = ExtResource("1_2vbf6")
 count_to_spawn = ExtResource("2_ik2nu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=653479741]
-position = Vector2(576, 324)
+position = Vector2(584, 331)
 shape = SubResource("RectangleShape2D_g4v7s")
 disabled = true

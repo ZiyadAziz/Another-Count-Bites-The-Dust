@@ -1,23 +1,26 @@
 [gd_scene format=3 uid="uid://dlnwn52ssdac2"]
 
-[ext_resource type="Texture2D" uid="uid://bl7ght80cpits" path="res://icon.svg" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://u1ngfs3xri4i" path="res://scripts/level_manager.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://cx4l8n6c7rp65" path="res://scenes/spawner.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://dxvmyj55fxxrb" path="res://assets/backgrown.png" id="4_lbhrr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g4v7s"]
-distance = -592.0
+distance = -598.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yf5fn"]
 normal = Vector2(1, 0)
-distance = 71.0
+distance = 57.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_57qmd"]
 normal = Vector2(0, 1)
-distance = 51.0
+distance = 54.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d0u6y"]
 normal = Vector2(-1, 0)
-distance = -1093.0
+distance = -1094.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 114.00439
 
 [node name="Game" type="Node2D" unique_id=1294443204]
 
@@ -25,11 +28,8 @@ distance = -1093.0
 unique_name_in_owner = true
 script = ExtResource("1_yqjtg")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=197247888]
-position = Vector2(295, 220)
-texture = ExtResource("1_uwrxv")
-
 [node name="spawner" parent="." unique_id=1828385876 instance=ExtResource("3_lnu2h")]
+position = Vector2(-4, 0)
 
 [node name="Borders" type="StaticBody2D" parent="." unique_id=415895682]
 
@@ -44,3 +44,12 @@ shape = SubResource("WorldBoundaryShape2D_57qmd")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders" unique_id=842747300]
 shape = SubResource("WorldBoundaryShape2D_d0u6y")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Borders" unique_id=32073495]
+position = Vector2(576, 326)
+shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="Backgrown" type="Sprite2D" parent="." unique_id=220346116]
+z_index = -1
+position = Vector2(576, 324)
+texture = ExtResource("4_lbhrr")
