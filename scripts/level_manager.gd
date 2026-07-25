@@ -2,13 +2,14 @@ extends Node
 
 @onready var count_down: Label = $CountDown
 @onready var murder_count_down: Timer = $MurderCountDown
+@onready var button: Button = $Button
 
 func _ready() -> void:
 	#Based on the difficulty, change the imposter num and wait time
 	match GameStats.current_difficulty:
 		GameStats.Difficulty.TUTORIAL:
 			print("Tutorial")
-			GameStats.imposter_count = 1
+			GameStats.imposter_count = randi_range(1,3)
 			GameStats.murder_time = 3
 
 		GameStats.Difficulty.EASY:
@@ -49,3 +50,6 @@ func incorrect_guess():
 
 func count_assassinated():
 	GameStats.counts_assassinated += 1 
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/end_screen.tscn")

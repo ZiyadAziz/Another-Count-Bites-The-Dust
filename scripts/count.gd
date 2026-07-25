@@ -167,9 +167,12 @@ func _on_murder_clock_timeout() -> void:
 			
 		var victim = possible_victims.pick_random()
 		victim.current_state = State.DEAD
-		level_manager.count_assassinated()
-		#victim.queue_free() #play an animation instead
-		print("Killed NPC", victim.id)
+		
+		#There could be an issue where 2 assassins murder the same target, so count_assassinated goes up by 2 even though only 1 was murdered
+		#Hopefully this fixes that issue
+		if not victim.died: 
+			level_manager.count_assassinated() 
+			
 		pick_new_target_run(ROAM_AREA)
 
 

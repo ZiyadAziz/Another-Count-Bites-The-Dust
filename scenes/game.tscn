@@ -46,6 +46,13 @@ stream = ExtResource("2_lbhrr")
 volume_db = -39.228
 autoplay = true
 
+[node name="Button" type="Button" parent="LevelManager" unique_id=1139453961]
+offset_left = 922.0
+offset_top = 5.0
+offset_right = 1060.0
+offset_bottom = 45.0
+text = "End The Hunt"
+
 [node name="spawner" parent="." unique_id=1828385876 instance=ExtResource("3_lnu2h")]
 position = Vector2(-4, 0)
 
@@ -71,3 +78,5 @@ shape = SubResource("CircleShape2D_g4v7s")
 z_index = -1
 position = Vector2(576, 324)
 texture = ExtResource("4_lbhrr")
+
+[connection signal="pressed" from="LevelManager/Button" to="LevelManager" method="_on_button_pressed"]
