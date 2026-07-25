@@ -7,8 +7,17 @@ extends Area2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var spawn_id := 1
+var imposter_ID: Array = []
+var imposter_subset: Array = []
 
 func _ready() -> void:
+	#This seems like a really dumb way to randomize the imposter, but it works
+	for index in range(1,101):
+		imposter_ID.append(index)
+		
+	imposter_ID.shuffle()
+	imposter_subset =  imposter_ID.slice(0,level_manager.imposter_count)
+	
 	spawn_count()
 	pass
 
@@ -26,7 +35,10 @@ func spawn_count() -> void:
 		var count = count_to_spawn.instantiate()
 		count.global_position = Vector2(random_x, random_y)
 		count.id = spawn_id 
-		if spawn_id <= level_manager.imposter_count:
+		
+		print(imposter_subset)
+		if spawn_id in imposter_subset:
+			print("hello")
 			count.imposter = true
 		
 		get_parent().call_deferred("add_child", count)
