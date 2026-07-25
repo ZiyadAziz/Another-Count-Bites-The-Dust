@@ -42,7 +42,7 @@ shape = SubResource("CircleShape2D_wca8b")
 disabled = true
 
 [node name="MurderClock" type="Timer" parent="." unique_id=788351401]
-wait_time = 3.0
+wait_time = 10.0
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=2039855863]
 one_shot = true
