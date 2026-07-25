@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b61skgiel5ss0"]
+
+[ext_resource type="Script" uid="uid://bjgrlj3yllc1k" path="res://scripts/start_menu.gd" id="1_ouf4f"]
+
+[node name="Start_menu" type="Control" unique_id=1034251450]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ouf4f")
+
+[node name="Button" type="Button" parent="." unique_id=687467251]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 263.0
+offset_right = 478.0
+offset_bottom = 363.0
+text = "Easy"
+
+[node name="Button2" type="Button" parent="." unique_id=547481587]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 131.0
+offset_right = 640.0
+offset_bottom = 207.0
+text = "Tutorial"
+
+[node name="Button3" type="Button" parent="." unique_id=257362079]
+layout_mode = 0
+offset_left = 585.0
+offset_top = 266.0
+offset_right = 809.0
+offset_bottom = 360.0
+text = "Hard
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

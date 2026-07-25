@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Another Count Bites The Dust"
-run/main_scene="uid://dlnwn52ssdac2"
+run/main_scene="uid://b61skgiel5ss0"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameStats="*uid://buidfiv2hge22"
 
 [display]
 

@@ -16,14 +16,13 @@ func _ready() -> void:
 		imposter_ID.append(index)
 		
 	imposter_ID.shuffle()
-	imposter_subset =  imposter_ID.slice(0,level_manager.imposter_count)
+	imposter_subset =  imposter_ID.slice(0,GameStats.imposter_count)
 	
 	spawn_count()
-	pass
 
 
 func spawn_count() -> void:
-	while level_manager.count_count < level_manager.max_count:
+	while GameStats.count_count < GameStats.max_count:
 		##LOOK MORE INTO HOW THESE LINES OF CODE WORKS, FOR KNOWLEDGE SAKE
 		var shape = collision_shape_2d.shape as RectangleShape2D
 		var size = shape.extents
@@ -45,4 +44,5 @@ func spawn_count() -> void:
 		level_manager.count_spawned()
 		spawn_id += 1
 	
-	level_manager.count_count -= level_manager.imposter_count
+	GameStats.count_count -= GameStats.imposter_count
+	print(GameStats.count_count)

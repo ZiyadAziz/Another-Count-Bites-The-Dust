@@ -56,6 +56,12 @@ func _ready() -> void:
 	robe.texture = load(robePaths[robeIndex])
 	if imposter:
 		murder_collision_shape_2d.disabled = false
+		murder_clock.wait_time = GameStats.murder_time
+		if GameStats.current_difficulty == GameStats.Difficulty.TUTORIAL:
+			body.texture = load("res://assets/Temp_Imposta.png")
+			hat.texture = load("res://assets/imposter.png")
+			robe.texture = load("res://assets/Temp_Imposta.png")
+			pass 
 		murder_clock.start()
 		
 	body_default_y = body.position.y

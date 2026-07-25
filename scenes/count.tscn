@@ -11,7 +11,7 @@
 radius = 18.027756
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wca8b"]
-radius = 55.0
+radius = 51.0
 
 [node name="Count" type="CharacterBody2D" unique_id=1484746654]
 z_index = 1
