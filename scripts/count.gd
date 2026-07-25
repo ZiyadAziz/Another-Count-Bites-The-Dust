@@ -32,11 +32,28 @@ var body_default_y := 0.0
 var hat_default_y := 0.0
 var robe_default_y := 0.0
 
+#Currently Imposter is always id 1, so he should be a blonde with black crown and black robe
+
+#blonde, dark brown, gray, pink
+var bodyPaths: Array[String] = ["res://assets/body_bd.png", "res://assets/body_db.png", "res://assets/body_g.png", "res://assets/body_p.png"]
+
+#black, gold, rose, red, silver
+var hatPaths: Array[String] = ["res://assets/hat_b.png", "res://assets/hat_g.png", "res://assets/hat_r.png", "res://assets/hat_red.png", "res://assets/hat_s.png"]
+
+#blue, dark green, gray, pink, red
+var robePaths: Array[String] = ["res://assets/robe_b.png", "res://assets/robe_dg.png", "res://assets/robe_gr.png", "res://assets/robe_p.png", "res://assets/robe_r.png"]
+
 func _ready() -> void:
+	var robeIndex = id % len(robePaths)
+	var hatIndex = ((id - 1) / 5) % 5
+	var bodyIndex = int(ceil(float(id) / (len(robePaths) * len(hatPaths)))) - 1
+	
+	body.texture = load(bodyPaths[bodyIndex])
+	hat.texture = load(hatPaths[hatIndex])
+	robe.texture = load(robePaths[robeIndex])
 	if imposter:
 		murder_collision_shape_2d.disabled = false
 		murder_clock.start()
-		body.texture = load("res://assets/Temp_Imposta.png")
 		
 	body_default_y = body.position.y
 	hat_default_y = hat.position.y
@@ -47,7 +64,6 @@ func _ready() -> void:
 #Maybe if you're the imposter, you should try to roam to other NPCs/Have different roaming mechanics in general
 func _process(delta: float) -> void:
 	if current_state == State.DEAD:
-		body.texture = load("res://assets/Temp_Imposta.png")
 		velocity = Vector2.ZERO
 		
 		if not died:
@@ -108,24 +124,26 @@ func pick_new_target():
 # and maybe just set the NPC state to being dead
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		queue_free()
+		current_state = State.DEAD
+		print("Killed NPC", id)
 
 #Here I would need to play the murder audio, and also the character murdered needs to play a death animation
 func _on_murder_clock_timeout() -> void:
-	var possible_victims: Array = []
-	
-	for body in murder_zone.get_overlapping_bodies():
-		if body is CharacterBody2D and not body.imposter and body.current_state != State.DEAD:
-			possible_victims.append(body)
-			
-	if possible_victims.is_empty():
-		print("no one to murder")
-		return
+	if not died:
+		var possible_victims: Array = []
 		
-	var victim = possible_victims.pick_random()
-	victim.current_state = State.DEAD
-	#victim.queue_free() #play an animation instead
-	print("Killed NPC", victim.id)
+		for NPC in murder_zone.get_overlapping_bodies():
+			if NPC is CharacterBody2D and not NPC.imposter and NPC.current_state != State.DEAD:
+				possible_victims.append(NPC)
+				
+		if possible_victims.is_empty():
+			print("no one to murder")
+			return
+			
+		var victim = possible_victims.pick_random()
+		victim.current_state = State.DEAD
+		#victim.queue_free() #play an animation instead
+		print("Killed NPC", victim.id)
 
 
 func _on_wait_timer_timeout() -> void:
