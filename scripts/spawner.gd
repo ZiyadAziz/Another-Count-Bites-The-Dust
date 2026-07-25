@@ -36,12 +36,13 @@ func spawn_count() -> void:
 		count.global_position = Vector2(random_x, random_y)
 		count.id = spawn_id 
 		
-		print(imposter_subset)
 		if spawn_id in imposter_subset:
-			print("hello")
+			print(imposter_subset)
 			count.imposter = true
 		
 		get_parent().call_deferred("add_child", count)
 		
 		level_manager.count_spawned()
 		spawn_id += 1
+	
+	level_manager.count_count -= level_manager.imposter_count

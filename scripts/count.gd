@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var hat: Sprite2D = $Sprite2D2
 @onready var robe: Sprite2D = $Sprite2D3
 
+@onready var level_manager = get_node("/root/Game/LevelManager")
+
 var id := 0
 var imposter := false
 
@@ -68,6 +70,10 @@ func _process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		
 		if not died:
+			if imposter:
+				level_manager.imposter_killed()
+			elif not imposter:
+				level_manager.count_killed()
 			collision_shape_2d.disabled = true
 			self.input_pickable = false
 			self.z_index = 0
@@ -123,7 +129,7 @@ func pick_new_target():
 	roam_target = global_position + Vector2.RIGHT.rotated(angle) * distance
 	move_direction = (roam_target - global_position).normalized()
 	
-func pick_new_target_run(runaway: int):
+func pick_new_target_run(runaway: float):
 	var angle = randf() * TAU
 	var distance = randf_range(runaway, 1000) 
 	
@@ -134,6 +140,8 @@ func pick_new_target_run(runaway: int):
 # and maybe just set the NPC state to being dead
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if not imposter:
+			level_manager.incorrect_guess()
 		player_kill.play()
 		current_state = State.DEAD
 		print("Killed NPC", id)
@@ -153,6 +161,7 @@ func _on_murder_clock_timeout() -> void:
 			
 		var victim = possible_victims.pick_random()
 		victim.current_state = State.DEAD
+		level_manager.count_assassinated()
 		#victim.queue_free() #play an animation instead
 		print("Killed NPC", victim.id)
 		pick_new_target_run(ROAM_AREA)
