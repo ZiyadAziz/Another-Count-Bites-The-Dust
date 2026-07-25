@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var murder_collision_shape_2d: CollisionShape2D = $MurderZone/CollisionShape2D
 @onready var murder_clock: Timer = $MurderClock
 @onready var wait_timer: Timer = $WaitTimer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @onready var body: Sprite2D = $Sprite2D
 @onready var hat: Sprite2D = $Sprite2D2
@@ -50,7 +51,11 @@ func _process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		
 		if not died:
+			collision_shape_2d.disabled = true
+			self.input_pickable = false
+			self.z_index = 0
 			create_tween().tween_property(self, "rotation_degrees", 90.0, 0.3)
+			
 		died = true
 		return
 		

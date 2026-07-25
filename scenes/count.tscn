@@ -12,6 +12,7 @@ height = 26.0
 radius = 64.0
 
 [node name="Count" type="CharacterBody2D" unique_id=1484746654]
+z_index = 1
 input_pickable = true
 script = ExtResource("1_wca8b")
 
