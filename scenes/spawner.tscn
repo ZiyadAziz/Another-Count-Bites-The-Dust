@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cqphvx0byhu71" path="res://scenes/count.tscn" id="2_ik2nu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(1152, 648)
+size = Vector2(926, 476)
 
 [node name="spawner" type="Area2D" unique_id=1828385876]
 script = ExtResource("1_2vbf6")

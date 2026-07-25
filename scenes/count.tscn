@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cfvoy8n0hxfcy" path="res://scripts/count.gd" id="1_wca8b"]
 [ext_resource type="Texture2D" uid="uid://demx7d27nvrar" path="res://assets/Temp_Count.png" id="1_xwakv"]
+[ext_resource type="Texture2D" uid="uid://0vdiidetkqcc" path="res://assets/Temp_Imposta.png" id="3_3tblt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g4v7s"]
 radius = 5.0
-height = 16.0
+height = 26.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wca8b"]
 radius = 64.0
@@ -17,6 +18,16 @@ script = ExtResource("1_wca8b")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=210038922]
 texture = ExtResource("1_xwakv")
 
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=865974295]
+position = Vector2(0, -8)
+scale = Vector2(1.34375, 0.4375)
+texture = ExtResource("3_3tblt")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=745479027]
+position = Vector2(0, 7)
+scale = Vector2(1, 0.75)
+texture = ExtResource("3_3tblt")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=303084489]
 shape = SubResource("CapsuleShape2D_g4v7s")
 
@@ -27,7 +38,11 @@ shape = SubResource("CircleShape2D_wca8b")
 disabled = true
 
 [node name="MurderClock" type="Timer" parent="." unique_id=788351401]
-wait_time = 10.0
+wait_time = 3.0
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=2039855863]
+one_shot = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="MurderClock" to="." method="_on_murder_clock_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

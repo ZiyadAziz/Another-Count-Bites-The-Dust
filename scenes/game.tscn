@@ -4,6 +4,21 @@
 [ext_resource type="Script" uid="uid://u1ngfs3xri4i" path="res://scripts/level_manager.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://cx4l8n6c7rp65" path="res://scenes/spawner.tscn" id="3_lnu2h"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g4v7s"]
+distance = -592.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yf5fn"]
+normal = Vector2(1, 0)
+distance = 71.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_57qmd"]
+normal = Vector2(0, 1)
+distance = 51.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d0u6y"]
+normal = Vector2(-1, 0)
+distance = -1093.0
+
 [node name="Game" type="Node2D" unique_id=1294443204]
 
 [node name="LevelManager" type="Node" parent="." unique_id=1760145482]
@@ -15,3 +30,17 @@ position = Vector2(295, 220)
 texture = ExtResource("1_uwrxv")
 
 [node name="spawner" parent="." unique_id=1828385876 instance=ExtResource("3_lnu2h")]
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=415895682]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders" unique_id=1156676438]
+shape = SubResource("WorldBoundaryShape2D_g4v7s")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders" unique_id=382168564]
+shape = SubResource("WorldBoundaryShape2D_yf5fn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders" unique_id=1465088363]
+shape = SubResource("WorldBoundaryShape2D_57qmd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders" unique_id=842747300]
+shape = SubResource("WorldBoundaryShape2D_d0u6y")
