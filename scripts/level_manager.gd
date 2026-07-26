@@ -9,7 +9,7 @@ func _ready() -> void:
 	match GameStats.current_difficulty:
 		GameStats.Difficulty.TUTORIAL:
 			print("Tutorial")
-			GameStats.imposter_count = randi_range(1,3)
+			GameStats.imposter_count = 2
 			GameStats.murder_time = 3
 
 		GameStats.Difficulty.EASY:
