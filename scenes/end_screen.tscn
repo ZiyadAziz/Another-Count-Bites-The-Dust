@@ -65,6 +65,15 @@ offset_bottom = 196.0
 theme_override_font_sizes/font_size = 22
 text = "Final Time: 0"
 
+[node name="Label6" type="Label" parent="." unique_id=1825244964]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 485.0
+offset_right = 267.0
+offset_bottom = 516.0
+theme_override_font_sizes/font_size = 22
+text = "Assassins Killed By Player: 0"
+
 [node name="Backgrown" type="Sprite2D" parent="." unique_id=642759273]
 z_index = -1
 position = Vector2(576, 324)

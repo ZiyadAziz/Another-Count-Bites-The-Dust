@@ -30,6 +30,7 @@ func _ready() -> void:
 	GameStats.time_elapsed = 0.0
 	GameStats.counts_assassinated = 0
 	GameStats.incorrect_guesses = 0
+	GameStats.correct_guesses = 0
 	GameStats.max_count = 100
 
 func _process(delta: float) -> void:
@@ -50,6 +51,9 @@ func incorrect_guess():
 
 func count_assassinated():
 	GameStats.counts_assassinated += 1 
+
+func assassin_assassinated():
+	GameStats.correct_guesses += 1 
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/end_screen.tscn")

@@ -148,6 +148,8 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if not imposter:
 			level_manager.incorrect_guess()
+		elif imposter:
+			level_manager.assassin_assassinated()
 		player_kill.play()
 		current_state = State.DEAD
 		print("Killed NPC", id)

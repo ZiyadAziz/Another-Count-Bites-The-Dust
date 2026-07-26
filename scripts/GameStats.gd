@@ -12,3 +12,4 @@ var imposter_count := 1
 var time_elapsed := 0.0
 var counts_assassinated := 0
 var incorrect_guesses := 0
+var correct_guesses := 0
