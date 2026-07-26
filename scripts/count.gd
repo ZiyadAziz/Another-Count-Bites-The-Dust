@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var murder_clock: Timer = $MurderClock
 @onready var wait_timer: Timer = $WaitTimer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var polygon_2d: Polygon2D = $MurderZone/Polygon2D
 
 @onready var body: Sprite2D = $Sprite2D
 @onready var hat: Sprite2D = $Sprite2D2
@@ -50,6 +51,7 @@ func _ready() -> void:
 	var robeIndex = id % len(robePaths)
 	var hatIndex = ((id - 1) / 5) % 5
 	var bodyIndex = int(ceil(float(id) / (len(robePaths) * len(hatPaths)))) - 1
+	polygon_2d.visible = false
 	
 	body.texture = load(bodyPaths[bodyIndex])
 	hat.texture = load(hatPaths[hatIndex])
@@ -58,10 +60,10 @@ func _ready() -> void:
 		murder_collision_shape_2d.disabled = false
 		murder_clock.wait_time = GameStats.murder_time
 		if GameStats.current_difficulty == GameStats.Difficulty.TUTORIAL:
+			polygon_2d.visible = true
 			body.texture = load("res://assets/Temp_Imposta.png")
 			hat.texture = load("res://assets/imposter.png")
 			robe.texture = load("res://assets/Temp_Imposta.png")
-			pass 
 		murder_clock.start()
 		
 	body_default_y = body.position.y
